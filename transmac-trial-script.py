@@ -11,6 +11,8 @@ def subkeys(key):
             break
 
 def traverse_registry_tree(hkey, keypath, tabs=0):
+    global done
+    notdone = True
     key = winreg.OpenKey(hkey, keypath, 0, winreg.KEY_READ)
     for subkeyname in subkeys(key):
         foundkey = '\t'*tabs + subkeyname
@@ -23,9 +25,9 @@ def traverse_registry_tree(hkey, keypath, tabs=0):
             print("Deleted: " + fullp)
             print("")
             print("Trial has been reset!")
-            break
-    
-    print("No key to delete found! No changes were made to your registry.")
+            notdone = False
+    if notdone:
+        print("No key to delete found! No changes were made to your registry.")
 
 keypath = r"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"
 traverse_registry_tree(winreg.HKEY_CURRENT_USER, keypath)
