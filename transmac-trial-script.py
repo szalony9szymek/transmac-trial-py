@@ -11,7 +11,6 @@ def subkeys(key):
             break
 
 def traverse_registry_tree(hkey, keypath, tabs=0):
-    global done
     notdone = True
     key = winreg.OpenKey(hkey, keypath, 0, winreg.KEY_READ)
     for subkeyname in subkeys(key):
