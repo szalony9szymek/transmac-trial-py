@@ -23,8 +23,9 @@ def traverse_registry_tree(hkey, keypath, tabs=0):
             print("Deleted: " + fullp)
             print("")
             print("Trial has been reset!")
-        else:
-            print("No key to delete found! No changes were made to your registry.")
+            break
+    
+    print("No key to delete found! No changes were made to your registry.")
 
 keypath = r"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"
 traverse_registry_tree(winreg.HKEY_CURRENT_USER, keypath)
